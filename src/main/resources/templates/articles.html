@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <title>Healthy_Way</title>
+</head>
+<body>
+
+<header th:fragment="navbar">
+    <nav class="navbar navbar-expand-md navbar-dark position-sticky bg-success"
+         style="z-index: 10000">
+        <div class="container-fluid">
+
+            <a href="" class="navbar-brand">Healthy_Way</a>
+
+            <div class="dropdown ">
+                <button class="btn btn-outline dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                    Admin panel
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item nav-link" href="/roles/add">Manage Role</a></li>
+                    <li><a class="dropdown-item nav-link" href="#">Remove User</a></li>
+                    <li><a class="dropdown-item nav-link" href="#">Something else here</a></li>
+                </ul>
+            </div>
+
+            <div class="dropdown ">
+                <button class="btn btn-outline dropdown-toggle" type="button" id="dropdownMenuButton2"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                    What you are interested in
+                </button>
+                <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item nav-link" href="#">Articles</a></li>
+                    <li><a class="dropdown-item nav-link" href="#">Recipes</a></li>
+                    <li><a class="dropdown-item nav-link" href="#">Exercises</a></li>
+                </ul>
+            </div>
+
+            <div class="ms-auto d-flex "></div>
+            <ul class="navbar-nav mb-3 d-flex gap-3">
+                <li class="nav-item">
+                    <a th:href="@{/users/register}" class="nav-link mt-2">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/users/login}" class="nav-link mt-2">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link mt-2">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<div class="row justify-content-around mt-5">
+    <div class="card text-white bg-success mb-3 col-6" style="max-width: 18rem;">
+        <div class="card-header">Header</div>
+        <div class="card-body">
+            <h5 class="card-title">Success card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            <input class="btn btn-primary" type="button" value="Learn More">
+        </div>
+    </div>
+    <div class="card text-white bg-success mb-3 col-6" style="max-width: 18rem;">
+        <div class="card-header">Header</div>
+        <div class="card-body">
+            <h5 class="card-title">Success card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            <input class="btn btn-primary" type="button" value="Learn More">
+        </div>
+    </div>
+    <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+        <div class="card-header">Header</div>
+        <div class="card-body">
+            <h5 class="card-title">Success card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            <input class="btn btn-primary" type="button" value="Learn More">
+        </div>
+
+    </div>
+</body>
+</html>
