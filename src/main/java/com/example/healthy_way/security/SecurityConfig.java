@@ -34,9 +34,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/resources/**","/style.css").permitAll()
+                .antMatchers("/resources/**").permitAll()
                 .antMatchers("/","/users/login/**","/users/register/**").permitAll()
                 .antMatchers("jdbc:mysql://localhost:3306/**").permitAll()
+                .antMatchers("/home").authenticated()
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -44,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/users/login")
                 .usernameParameter("username")
                 .passwordParameter("password")
-                .defaultSuccessUrl("/")
+                .successForwardUrl("/home")
                 .failureForwardUrl("/users/login-error")
                 .and()
                 .logout()
