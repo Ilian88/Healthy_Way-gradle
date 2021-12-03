@@ -7,11 +7,9 @@ import com.example.healthy_way.service.UserService;
 import org.hibernate.validator.constraints.ModCheck;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -21,6 +19,7 @@ import javax.validation.Valid;
 public class UserController {
 
     private final String REDIRECT_HOME = "redirect:/";
+    private final String REDIRECT_LOGIN = "redirect:login";
     private final String REDIRECT_REGISTER = "redirect:register";
 
     private final UserService userService;
@@ -42,13 +41,13 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String login() {
-        return "login";
-    }
+    public String login(Model model, @RequestParam(required = false) boolean error) {
+        if (!model.containsAttribute("error")) {
+            model.addAttribute("error", false);
+        }
 
-    @GetMapping("/login-error")
-    public String errorLogin() {
-        return "login-error";
+        model.addAttribute("error", error);
+        return "login";
     }
 
     @GetMapping("/register")
@@ -72,31 +71,18 @@ public class UserController {
 
         this.userService.saveUser(modelMapper.map(userRegisterBindingModel, UserServiceModel.class));
 
-        return REDIRECT_HOME;
+        return REDIRECT_LOGIN;
 
         //TODO: enter the errors in the HTML and gender enum field to be <select>
     }
 
-//    @PostMapping("/login")
-//    public String loginConfirm(@ModelAttribute LoginBindingModel loginBindingModel,
-//                               BindingResult bindingResult,
-//                               RedirectAttributes redirectAttributes) {
-//
-//        if (bindingResult.hasErrors()) {
-//            redirectAttributes.addFlashAttribute("loginBindingModel", loginBindingModel);
-//            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userRegisterBindingModel",
-//                    bindingResult);
-//
-//
-//            return "redirect:login";
-//        }
-//        if (this.userService.checkIfUserExistsByEmail(loginBindingModel.getEmail())) {
-//            redirectAttributes.addFlashAttribute("loginBindingModel", loginBindingModel);
-//            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userRegisterBindingModel",
-//                    bindingResult);
-//        }
-//
-//        return "redirect:/";
-//
-//    }
+    @GetMapping("login-error")
+    public String loginError(Model model) {
+        model.addAttribute("error", true);
+
+        return "redirect:users/login";
+
+
+        //TODO
+    }
 }

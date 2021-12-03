@@ -21,7 +21,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div sec:authorize="hasRole('ADMIN')" class="dropdown">
+        <div sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown">
             <button  class="btn btn-secondary dropdown-toggle bg-success" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Manage Roles
             </button>
@@ -50,9 +50,9 @@
                 <li sec:authorize="isAnonymous()" class="nav-item">
                     <a class="nav-link" th:href="@{users/register}">Register</a>
                 </li>
-                <li sec:authorize="isAuthenticated()" class="nav-item">
-                    <a class="nav-link " href="#">Logout</a>
-                </li>
+                <form sec:authorize="isAuthenticated()" th:action="@{/users/logout}" th:method="POST" class="nav-item bg-success">
+                    <input type="submit" class="nav-link bg-success m-0" th:value="Logout"/>
+                </form>
             </ul>
 
         </div>

@@ -87,6 +87,9 @@ public class UserRegisterBindingModel {
     }
 
     public boolean passwordsMatch() {
+        if (this.password == null || this.confirmPassword == null) {
+            return false;
+        }
         return this.password.equals(this.confirmPassword);
     }
 }
